@@ -49,7 +49,7 @@ class UserClient {
     if (offset < 0) {
       throw ArgumentError.value(
         offset,
-        null,
+        'offset',
         'Offset cannot be less than zero.',
       );
     }
@@ -57,7 +57,7 @@ class UserClient {
     if (limit < 0) {
       throw ArgumentError.value(
         limit,
-        null,
+        'limit',
         'Limit cannot be less than zero.',
       );
     }
@@ -146,7 +146,7 @@ class UserClient {
     if (offset < 0) {
       throw ArgumentError.value(
         offset,
-        null,
+        'offset',
         'Offset cannot be less than zero.',
       );
     }
@@ -154,7 +154,7 @@ class UserClient {
     if (limit < 0) {
       throw ArgumentError.value(
         limit,
-        null,
+        'limit',
         'Limit cannot be less than zero.',
       );
     }

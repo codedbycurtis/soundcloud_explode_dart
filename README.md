@@ -18,10 +18,9 @@ import 'soundcloud_explode_dart/soundcloud_explode_dart.dart';
 
 final client = SoundcloudClient();
 
-// Most functions return a stream of results in the
-// form of Stream<Iterable<E>>.
+// Most functions return a stream of results in the form of Stream<Iterable<E>>.
 // The number of results returned in each Iterable<E>, as well as
-// the search result offset and search filter are optional parameters.
+// the result offset and search filter are optional parameters.
 final stream = client.search(
     'Haddaway - What Is Love',
     searchFilter: SearchFilter.tracks,
@@ -32,10 +31,22 @@ final streamIterator = StreamIterator(stream);
 
 while (await streamIterator.moveNext()) {
     for (final result in streamIterator.current) {
-        print(result.title);
+        // Use pattern matching for mixed streams
+        switch (result) {
+            case final UserSearchResult user:
+            break;
+
+            case final TrackSearchResult track:
+            break;
+
+            case final PlaylistSearchResult playlist:
+            break;
+        }
     }
 }
 ```
+
+Alternatively, use one of the specialised functions, such as `getUsers(...)`, `getTracks(...)`, etc., which casts each item in the returned `Iterable<E>` to the specified type.
 
 ### Querying users
 
@@ -53,9 +64,9 @@ final user1 = await client.users.getByUrl('https://www.soundcloud.com/a-user');
 final user2 = await client.users.get(123456789);
 
 // Get the tracks/playlists/albums a specific user has uploaded...
-final tracks = client.users.getTracks(user1.id);
-final playlists = client.users.getPlaylists(user1.id);
-final albums = client.users.getAlbums(user1.id);
+final trackStream = client.users.getTracks(user1.id);
+final playlistStream = client.users.getPlaylists(user1.id);
+final albumStream = client.users.getAlbums(user1.id);
 ```
 
 ### Querying tracks and streams
@@ -96,7 +107,6 @@ await audioPlayer.play(stream.url);
 > To determine whether or not a track is fully playable:
 >
 > ```dart
-> final track = await client.tracks.get(123456789);
 > if (track.duration == track.fullDuration) {
 >    // Track can be played until completion.
 >    ...
@@ -105,22 +115,23 @@ await audioPlayer.play(stream.url);
 
 ### Querying playlists/albums
 
-To retrieve metadata about specific playlists:
+To retrieve metadata about a specific playlist:
 
 ```dart
 import 'soundcloud_explode_dart/soundcloud_explode_dart.dart';
 
 final client = SoundcloudClient();
 
-// Playlists/albums can be retrieved via URL...
-final playlist11 = await client.playlists.getByUrl('https://www.soundcloud.com/a-user/sets/a-playlist-or-album');
+// Playlists can be retrieved via URL...
+final playlist1 = await client.playlists.getByUrl('https://www.soundcloud.com/a-user/sets/a-playlist');
 
 // ...or via their playlist ID.
 final playlist2 = await client.playlists.get(123456789);
 
-// Indicates if the playlist is identified as an album or not.
+// Playlists and albums are effectively synonymous on SoundCloud,
+// with only a boolean property differentiating the two.
 final isAlbum = playlist1.isAlbum;
 
-// Get the tracks contained with a playlist/album...
+// Get the tracks contained within a playlist...
 final tracks = client.playlists.getTracks(playlist1.id);
 ```
