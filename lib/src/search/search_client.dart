@@ -117,7 +117,7 @@ class SearchClient {
     searchFilter: SearchFilter.tracks,
     offset: offset,
     limit: limit
-  ).cast<Iterable<TrackSearchResult>>();
+  ).map((b) => b.cast<TrackSearchResult>());
 
   /// Searches for albums matching the provided [query].
   /// 
@@ -132,7 +132,7 @@ class SearchClient {
     searchFilter: SearchFilter.albums,
     offset: offset,
     limit: limit
-  ).cast<Iterable<PlaylistSearchResult>>();
+  ).map((b) => b.cast<PlaylistSearchResult>());
 
   /// Searches for playlists or albums matching the provided [query].
   /// 
@@ -147,7 +147,7 @@ class SearchClient {
     searchFilter: SearchFilter.playlists,
     offset: offset,
     limit: limit
-  ).cast<Iterable<PlaylistSearchResult>>();
+  ).map((b) => b.cast<PlaylistSearchResult>());
 
   /// Searches for only playlists matching the provided [query].
   /// 
@@ -162,7 +162,7 @@ class SearchClient {
     searchFilter: SearchFilter.playlistsWithoutAlbums,
     offset: offset,
     limit: limit
-  ).cast<Iterable<PlaylistSearchResult>>();
+  ).map((b) => b.cast<PlaylistSearchResult>());
 
   /// Searches for users matching the provided [query].
   /// 
@@ -177,5 +177,5 @@ class SearchClient {
     searchFilter: SearchFilter.users,
     offset: offset,
     limit: limit
-  ).cast<Iterable<UserSearchResult>>();
+  ).map((b) => b.cast<UserSearchResult>());
 }
