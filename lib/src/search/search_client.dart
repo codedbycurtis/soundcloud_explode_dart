@@ -17,6 +17,33 @@ class SearchClient {
     : _http = httpClient,
       _controller = controller;
 
+  /// Fetches for suggestions based on the given query.
+  ///
+  /// [query] The query to search for suggestions for.
+  Future<List<String>> fetchSuggestion(
+    String query,
+  ) async {
+    if (query.isEmpty) {
+      return [];
+    }
+
+    final clientId = await _controller.getClientId();
+
+    final uri = Uri.https(
+      'api-v2.soundcloud.com',
+      '/search/queries', {
+        'q': query,
+        'client_id': clientId,
+      }
+    );
+
+    final response = await _http.get(uri);
+    final json = jsonDecode(response.body);
+    final collection = json['collection'] as List;
+
+    return collection.map((suggestion) => suggestion['query'] as String).toList();
+  }
+
   /// Searches for the provided [query] with the specified [searchFilter].
   /// 
   /// Search results are offset by the specified [offset], with each batch containing
