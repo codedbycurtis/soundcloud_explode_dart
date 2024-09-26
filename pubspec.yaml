@@ -1,5 +1,5 @@
 name: soundcloud_explode_dart
-version: 1.0.2
+version: 1.0.3
 description: Scrape metadata about users, tracks, playlists, and albums from SoundCloud without requiring an account, API key, or rate-limiting.
 homepage: https://github.com/codedbycurtis/soundcloud_explode_dart
 repository: https://github.com/codedbycurtis/soundcloud_explode_dart

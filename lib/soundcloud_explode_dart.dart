@@ -2,6 +2,7 @@
 library;
 
 export 'src/soundcloud_client.dart';
+export 'src/exceptions/exceptions.dart';
 export 'src/playlists/playlists.dart';
 export 'src/search/search.dart';
 export 'src/tracks/tracks.dart';

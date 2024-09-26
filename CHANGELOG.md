@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.3
+
+- Exported exception types so that they can be caught by calling clients.
+
 ## 1.0.2
 
 - Updated to the more permissive MIT license.
