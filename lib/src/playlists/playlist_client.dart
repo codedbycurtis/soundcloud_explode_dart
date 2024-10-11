@@ -76,7 +76,7 @@ class PlaylistClient {
       final response = await _http.get(uri);
       final actualTracks = jsonDecode(response.body) as List;
       
-      yield actualTracks.map((t) => Track.fromJson(t));
+      yield batchIds.map((id) => Track.fromJson(actualTracks.where((t) => t["id"] == id).single));
 
       continuationOffset += actualTracks.length;
     }
