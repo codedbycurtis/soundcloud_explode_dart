@@ -19,7 +19,7 @@ class UserClient {
       _controller = controller;
 
   /// Gets the [SoundcloudUser] with the specified [userId].
-  Future<SoundcloudUser> get(int userId) async {
+  Future<User> get(int userId) async {
     final clientId = await _controller.getClientId();
     final uri = Uri.https(
       'api-v2.soundcloud.com',
@@ -33,7 +33,7 @@ class UserClient {
   }
 
   /// Gets the [SoundcloudUser] associated with the provided [url].
-  Future<SoundcloudUser> getByUrl(String url) async {
+  Future<User> getByUrl(String url) async {
     final json = await _controller.resolveUrl(url);
     final user = jsonDecode(json);
     return User.fromJson(user);
