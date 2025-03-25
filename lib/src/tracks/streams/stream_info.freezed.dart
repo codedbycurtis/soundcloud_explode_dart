@@ -18,11 +18,13 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$StreamInfo {
   String get url => throw _privateConstructorUsedError;
   bool get isSnipped => throw _privateConstructorUsedError;
-  Container get container => throw _privateConstructorUsedError;
-  Protocol get protocol => throw _privateConstructorUsedError;
+  String get container => throw _privateConstructorUsedError;
+  String get protocol => throw _privateConstructorUsedError;
   Quality get quality => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StreamInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $StreamInfoCopyWith<StreamInfo> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -36,8 +38,8 @@ abstract class $StreamInfoCopyWith<$Res> {
   $Res call(
       {String url,
       bool isSnipped,
-      Container container,
-      Protocol protocol,
+      String container,
+      String protocol,
       Quality quality});
 }
 
@@ -51,6 +53,8 @@ class _$StreamInfoCopyWithImpl<$Res, $Val extends StreamInfo>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of StreamInfo
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -72,11 +76,11 @@ class _$StreamInfoCopyWithImpl<$Res, $Val extends StreamInfo>
       container: null == container
           ? _value.container
           : container // ignore: cast_nullable_to_non_nullable
-              as Container,
+              as String,
       protocol: null == protocol
           ? _value.protocol
           : protocol // ignore: cast_nullable_to_non_nullable
-              as Protocol,
+              as String,
       quality: null == quality
           ? _value.quality
           : quality // ignore: cast_nullable_to_non_nullable
@@ -96,8 +100,8 @@ abstract class _$$StreamInfoImplCopyWith<$Res>
   $Res call(
       {String url,
       bool isSnipped,
-      Container container,
-      Protocol protocol,
+      String container,
+      String protocol,
       Quality quality});
 }
 
@@ -109,6 +113,8 @@ class __$$StreamInfoImplCopyWithImpl<$Res>
       _$StreamInfoImpl _value, $Res Function(_$StreamInfoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of StreamInfo
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -130,11 +136,11 @@ class __$$StreamInfoImplCopyWithImpl<$Res>
       container: null == container
           ? _value.container
           : container // ignore: cast_nullable_to_non_nullable
-              as Container,
+              as String,
       protocol: null == protocol
           ? _value.protocol
           : protocol // ignore: cast_nullable_to_non_nullable
-              as Protocol,
+              as String,
       quality: null == quality
           ? _value.quality
           : quality // ignore: cast_nullable_to_non_nullable
@@ -158,9 +164,9 @@ class _$StreamInfoImpl implements _StreamInfo {
   @override
   final bool isSnipped;
   @override
-  final Container container;
+  final String container;
   @override
-  final Protocol protocol;
+  final String protocol;
   @override
   final Quality quality;
 
@@ -188,7 +194,9 @@ class _$StreamInfoImpl implements _StreamInfo {
   int get hashCode =>
       Object.hash(runtimeType, url, isSnipped, container, protocol, quality);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StreamInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$StreamInfoImplCopyWith<_$StreamInfoImpl> get copyWith =>
@@ -199,8 +207,8 @@ abstract class _StreamInfo implements StreamInfo {
   const factory _StreamInfo(
       {required final String url,
       required final bool isSnipped,
-      required final Container container,
-      required final Protocol protocol,
+      required final String container,
+      required final String protocol,
       required final Quality quality}) = _$StreamInfoImpl;
 
   @override
@@ -208,13 +216,16 @@ abstract class _StreamInfo implements StreamInfo {
   @override
   bool get isSnipped;
   @override
-  Container get container;
+  String get container;
   @override
-  Protocol get protocol;
+  String get protocol;
   @override
   Quality get quality;
+
+  /// Create a copy of StreamInfo
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$StreamInfoImplCopyWith<_$StreamInfoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -3,8 +3,6 @@ import 'package:http/http.dart';
 import '../bridge/soundcloud_controller.dart';
 import '../exceptions/track_resolution_exception.dart';
 import '../tracks/track.dart';
-import 'streams/container.dart';
-import 'streams/protocol.dart';
 import 'streams/quality.dart';
 import 'streams/stream_info.dart';
 
@@ -45,25 +43,17 @@ class TrackClient {
     for (final transcoding in transcodingsJson) {
       final isSnipped = transcoding['snipped'] as bool;
 
-      final mimeTypeStr = transcoding['format']?['mime_type'] as String?;
-      final mimeType = switch (mimeTypeStr) {
-        'audio/mpeg' => Container.mp3,
-        'audio/ogg; codecs="opus"' => Container.ogg,
-        _ => throw TrackResolutionException('Unable to resolve MIME type: $mimeTypeStr')
-      };
+      final String? mimeType = transcoding['format']?['mime_type'];
+      final container = mimeType?.split(';')[0].split('/')[1] ?? '';
 
-      final protocolStr = transcoding['format']?['protocol'] as String?;
-      final protocol = switch (protocolStr) {
-        'progressive' => Protocol.progressive,
-        'hls' => Protocol.hls,
-        _ => throw TrackResolutionException('Unable to resolve protocol: $protocolStr')
-      };
+      final String protocol = transcoding['format']?['protocol'] ?? '';
+      // Skip AES-encrypted streams as they cannot be resolved without an account.
+      if (protocol.contains('encrypted')) continue;
 
-      final qualityStr = transcoding['quality'] as String?;
-      final quality = switch (qualityStr) {
+      final quality = switch (transcoding['quality']) {
         'sq' => Quality.standardQuality,
         'hq' => Quality.highQuality,
-        _ => throw TrackResolutionException('Unable to resolve quality: $qualityStr')
+        _ => Quality.unknown,
       };
 
       final transcodingUrl = '${transcoding['url']}?client_id=$clientId';
@@ -75,7 +65,7 @@ class TrackClient {
         StreamInfo(
           url: streamUrl,
           isSnipped: isSnipped,
-          container: mimeType,
+          container: container,
           protocol: protocol,
           quality: quality
         )

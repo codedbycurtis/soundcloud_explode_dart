@@ -6,5 +6,10 @@ enum Quality {
   /// High audio quality.
   /// 
   /// Typically reserved for SoundCloud Go subscribers.
-  highQuality;
+  highQuality,
+
+  /// Unknown audio quality.
+  /// 
+  /// Indicates the audio quality could not be parsed.
+  unknown;
 }
