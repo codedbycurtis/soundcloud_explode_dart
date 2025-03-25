@@ -21,7 +21,7 @@ _$TrackSearchResultImpl _$$TrackSearchResultImplFromJson(
       duration: (json['duration'] as num).toDouble(),
       fullDuration: (json['full_duration'] as num).toDouble(),
       genre: json['genre'] as String?,
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       labelName: json['label_name'] as String?,
       lastModified: json['last_modified'] == null
           ? null
@@ -84,7 +84,7 @@ _$PlaylistSearchResultImpl _$$PlaylistSearchResultImplFromJson(
       description: json['description'] as String?,
       duration: (json['duration'] as num).toDouble(),
       genre: json['genre'] as String?,
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       labelName: json['label_name'] as String?,
       lastModified: json['last_modified'] == null
           ? null
@@ -144,7 +144,7 @@ _$UserSearchResultImpl _$$UserSearchResultImplFromJson(
       firstName: json['first_name'] as String?,
       fullName: json['full_name'] as String?,
       groupsCount: (json['groups_count'] as num?)?.toDouble() ?? 0,
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       lastModified: json['last_modified'] == null
           ? null
           : DateTime.parse(json['last_modified'] as String),

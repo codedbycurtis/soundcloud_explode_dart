@@ -35,8 +35,12 @@ mixin _$MiniUser {
   @JsonKey(name: 'verified')
   bool get isVerified => throw _privateConstructorUsedError;
 
+  /// Serializes this MiniUser to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MiniUser
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MiniUserCopyWith<MiniUser> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -71,6 +75,8 @@ class _$MiniUserCopyWithImpl<$Res, $Val extends MiniUser>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MiniUser
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -171,6 +177,8 @@ class __$$MiniUserImplCopyWithImpl<$Res>
       _$MiniUserImpl _value, $Res Function(_$MiniUserImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MiniUser
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -321,7 +329,7 @@ class _$MiniUserImpl implements _MiniUser {
                 other.isVerified == isVerified));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -338,7 +346,9 @@ class _$MiniUserImpl implements _MiniUser {
       username,
       isVerified);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MiniUser
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MiniUserImplCopyWith<_$MiniUserImpl> get copyWith =>
@@ -397,8 +407,11 @@ abstract class _MiniUser implements MiniUser {
   @override
   @JsonKey(name: 'verified')
   bool get isVerified;
+
+  /// Create a copy of MiniUser
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MiniUserImplCopyWith<_$MiniUserImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

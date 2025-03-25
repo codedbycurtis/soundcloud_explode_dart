@@ -52,8 +52,12 @@ mixin _$Track {
   String get policy => throw _privateConstructorUsedError;
   MiniUser get user => throw _privateConstructorUsedError;
 
+  /// Serializes this Track to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Track
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TrackCopyWith<Track> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -103,6 +107,8 @@ class _$TrackCopyWithImpl<$Res, $Val extends Track>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Track
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -241,6 +247,8 @@ class _$TrackCopyWithImpl<$Res, $Val extends Track>
     ) as $Val);
   }
 
+  /// Create a copy of Track
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MiniUserCopyWith<$Res> get user {
@@ -297,6 +305,8 @@ class __$$TrackImplCopyWithImpl<$Res>
       _$TrackImpl _value, $Res Function(_$TrackImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Track
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -584,7 +594,7 @@ class _$TrackImpl implements _Track {
             (identical(other.user, user) || other.user == user));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -616,7 +626,9 @@ class _$TrackImpl implements _Track {
         user
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Track
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TrackImplCopyWith<_$TrackImpl> get copyWith =>
@@ -718,8 +730,11 @@ abstract class _Track implements Track {
   String get policy;
   @override
   MiniUser get user;
+
+  /// Create a copy of Track
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TrackImplCopyWith<_$TrackImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

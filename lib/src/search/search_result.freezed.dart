@@ -291,8 +291,13 @@ mixin _$SearchResult {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this SearchResult to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SearchResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SearchResultCopyWith<SearchResult> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -323,6 +328,8 @@ class _$SearchResultCopyWithImpl<$Res, $Val extends SearchResult>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SearchResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -414,6 +421,8 @@ class __$$TrackSearchResultImplCopyWithImpl<$Res>
       $Res Function(_$TrackSearchResultImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SearchResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -552,6 +561,8 @@ class __$$TrackSearchResultImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of SearchResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MiniUserCopyWith<$Res> get user {
@@ -714,7 +725,7 @@ class _$TrackSearchResultImpl implements TrackSearchResult {
             (identical(other.user, user) || other.user == user));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -746,7 +757,9 @@ class _$TrackSearchResultImpl implements TrackSearchResult {
         user
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SearchResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TrackSearchResultImplCopyWith<_$TrackSearchResultImpl> get copyWith =>
@@ -1184,8 +1197,11 @@ abstract class TrackSearchResult implements SearchResult, SoundcloudTrack {
   String get monetizationModel;
   String get policy;
   MiniUser get user;
+
+  /// Create a copy of SearchResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TrackSearchResultImplCopyWith<_$TrackSearchResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1227,6 +1243,8 @@ class __$$PlaylistSearchResultImplCopyWithImpl<$Res>
       $Res Function(_$PlaylistSearchResultImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SearchResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1315,6 +1333,8 @@ class __$$PlaylistSearchResultImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of SearchResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MiniUserCopyWith<$Res> get user {
@@ -1427,7 +1447,7 @@ class _$PlaylistSearchResultImpl implements PlaylistSearchResult {
                 other.trackCount == trackCount));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1448,7 +1468,9 @@ class _$PlaylistSearchResultImpl implements PlaylistSearchResult {
       user,
       trackCount);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SearchResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PlaylistSearchResultImplCopyWith<_$PlaylistSearchResultImpl>
@@ -1837,8 +1859,11 @@ abstract class PlaylistSearchResult
   MiniUser get user;
   @JsonKey(defaultValue: 0)
   double get trackCount;
+
+  /// Create a copy of SearchResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PlaylistSearchResultImplCopyWith<_$PlaylistSearchResultImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1886,6 +1911,8 @@ class __$$UserSearchResultImplCopyWithImpl<$Res>
       $Res Function(_$UserSearchResultImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SearchResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2169,7 +2196,7 @@ class _$UserSearchResultImpl implements UserSearchResult {
                 other.isVerified == isVerified));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -2199,7 +2226,9 @@ class _$UserSearchResultImpl implements UserSearchResult {
         isVerified
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SearchResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UserSearchResultImplCopyWith<_$UserSearchResultImpl> get copyWith =>
@@ -2633,8 +2662,11 @@ abstract class UserSearchResult implements SearchResult, SoundcloudUser {
   String get username;
   @JsonKey(name: 'verified')
   bool get isVerified;
+
+  /// Create a copy of SearchResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserSearchResultImplCopyWith<_$UserSearchResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

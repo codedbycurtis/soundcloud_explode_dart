@@ -40,8 +40,12 @@ mixin _$Playlist {
   @JsonKey(defaultValue: 0)
   double get trackCount => throw _privateConstructorUsedError;
 
+  /// Serializes this Playlist to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Playlist
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PlaylistCopyWith<Playlist> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -82,6 +86,8 @@ class _$PlaylistCopyWithImpl<$Res, $Val extends Playlist>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Playlist
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -170,6 +176,8 @@ class _$PlaylistCopyWithImpl<$Res, $Val extends Playlist>
     ) as $Val);
   }
 
+  /// Create a copy of Playlist
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MiniUserCopyWith<$Res> get user {
@@ -217,6 +225,8 @@ class __$$PlaylistImplCopyWithImpl<$Res>
       _$PlaylistImpl _value, $Res Function(_$PlaylistImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Playlist
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -404,7 +414,7 @@ class _$PlaylistImpl implements _Playlist {
                 other.trackCount == trackCount));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -425,7 +435,9 @@ class _$PlaylistImpl implements _Playlist {
       user,
       trackCount);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Playlist
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PlaylistImplCopyWith<_$PlaylistImpl> get copyWith =>
@@ -497,8 +509,11 @@ abstract class _Playlist implements Playlist {
   @override
   @JsonKey(defaultValue: 0)
   double get trackCount;
+
+  /// Create a copy of Playlist
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PlaylistImplCopyWith<_$PlaylistImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

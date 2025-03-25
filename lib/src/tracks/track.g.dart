@@ -19,7 +19,7 @@ _$TrackImpl _$$TrackImplFromJson(Map<String, dynamic> json) => _$TrackImpl(
       duration: (json['duration'] as num).toDouble(),
       fullDuration: (json['full_duration'] as num).toDouble(),
       genre: json['genre'] as String?,
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       labelName: json['label_name'] as String?,
       lastModified: json['last_modified'] == null
           ? null

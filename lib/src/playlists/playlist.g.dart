@@ -15,7 +15,7 @@ _$PlaylistImpl _$$PlaylistImplFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String?,
       duration: (json['duration'] as num).toDouble(),
       genre: json['genre'] as String?,
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       labelName: json['label_name'] as String?,
       lastModified: json['last_modified'] == null
           ? null
