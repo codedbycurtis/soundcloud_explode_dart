@@ -61,7 +61,7 @@ class TrackClient {
 
       final transcodingUrl = '${transcoding['url']}?client_id=$clientId';
       final response = await _http.get(Uri.parse(transcodingUrl));
-      response.ensureSuccessStatusCode();
+      if (response.statusCode != 200) continue;
       final json = jsonDecode(response.body);
       final streamUrl = json['url'] as String;
       
