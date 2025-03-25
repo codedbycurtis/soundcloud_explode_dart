@@ -3,6 +3,8 @@ import 'package:http/http.dart';
 import '../bridge/soundcloud_controller.dart';
 import '../constants.dart';
 import '../tracks/track.dart';
+import '../utils/extensions.dart';
+import '../utils/utils.dart';
 import 'playlist.dart';
 
 /// Scrapes metadata about SoundCloud playlists and albums.
@@ -17,6 +19,7 @@ class PlaylistClient {
 
   /// Gets the [Playlist] with the specified [playlistId].
   Future<Playlist> get(int playlistId) async {
+    throwIfNegative(playlistId, 'playlistId');
     final json = await _getPlaylistResponse(playlistId);
     return Playlist.fromJson(json);
   }
@@ -34,21 +37,8 @@ class PlaylistClient {
     int offset = defaultOffset,
     int limit = defaultLimit
   }) async* {
-    if (offset < 0) {
-      throw ArgumentError.value(
-        offset,
-        'offset',
-        'Offset cannot be less than zero.',
-      );
-    }
-
-    if (limit < 0) {
-      throw ArgumentError.value(
-        limit,
-        'limit',
-        'Limit cannot be less than zero.',
-      );
-    }
+    throwIfNegative(offset, 'offset');
+    throwIfNegative(limit, 'limit');
 
     final json = await _getPlaylistResponse(playlistId);
     final tracks = json['tracks'] as List;
@@ -74,6 +64,7 @@ class PlaylistClient {
       );
 
       final response = await _http.get(uri);
+      response.ensureSuccessStatusCode();
       final actualTracks = jsonDecode(response.body) as List;
       
       yield actualTracks.map((t) => Track.fromJson(t));
@@ -91,6 +82,7 @@ class PlaylistClient {
       }
     );
     final response = await _http.get(uri);
+    response.ensureSuccessStatusCode();
     return jsonDecode(response.body);
   }
 }

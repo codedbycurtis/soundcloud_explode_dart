@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart';
-import 'package:soundcloud_explode_dart/src/exceptions/search_result_exception.dart';
 import '../bridge/soundcloud_controller.dart';
 import '../constants.dart';
+import '../exceptions/search_result_exception.dart';
+import '../utils/extensions.dart';
+import '../utils/utils.dart';
 import 'search_filter.dart';
 import 'search_result.dart';
 
@@ -43,21 +45,8 @@ class SearchClient {
     int offset = defaultOffset,
     int limit = defaultLimit
   }) async* {
-    if (offset < 0) {
-      throw ArgumentError.value(
-        offset,
-        'offset',
-        'Offset cannot be less than zero.',
-      );
-    }
-
-    if (limit < 0) {
-      throw ArgumentError.value(
-        limit,
-        'limit',
-        'Limit cannot be less than zero.',
-      );
-    }
+    throwIfNegative(offset, 'offset');
+    throwIfNegative(limit, 'limit');
 
     var continuationOffset = offset;
 
@@ -84,6 +73,7 @@ class SearchClient {
       );
 
       final response = await _http.get(uri);
+      response.ensureSuccessStatusCode();
       final json = jsonDecode(response.body);
       final collection = json['collection'] as List;
 
@@ -194,6 +184,7 @@ class SearchClient {
     );
 
     final response = await _http.get(uri);
+    response.ensureSuccessStatusCode();
     final json = jsonDecode(response.body);
     final collection = json['collection'] as List;
 

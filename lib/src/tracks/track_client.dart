@@ -3,6 +3,8 @@ import 'package:http/http.dart';
 import '../bridge/soundcloud_controller.dart';
 import '../exceptions/track_resolution_exception.dart';
 import '../tracks/track.dart';
+import '../utils/extensions.dart';
+import '../utils/utils.dart';
 import 'streams/quality.dart';
 import 'streams/stream_info.dart';
 
@@ -18,6 +20,7 @@ class TrackClient {
 
   /// Gets the [Track] with the specified [trackId].
   Future<Track> get(int trackId) async {
+    throwIfNegative(trackId, 'trackId');
     final track = await _getTrackResponse(trackId);
     return Track.fromJson(track);
   }
@@ -58,6 +61,7 @@ class TrackClient {
 
       final transcodingUrl = '${transcoding['url']}?client_id=$clientId';
       final response = await _http.get(Uri.parse(transcodingUrl));
+      response.ensureSuccessStatusCode();
       final json = jsonDecode(response.body);
       final streamUrl = json['url'] as String;
       
@@ -84,6 +88,7 @@ class TrackClient {
       }
     );
     final response = await _http.get(uri);
+    response.ensureSuccessStatusCode();
     return jsonDecode(response.body);
   }
 }

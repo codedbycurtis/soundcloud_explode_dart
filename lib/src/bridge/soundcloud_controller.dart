@@ -1,4 +1,5 @@
 import 'package:http/http.dart';
+import '../utils/extensions.dart';
 import '../exceptions/client_unauthorized_exception.dart';
 
 /// Interacts with the SoundCloud API.
@@ -19,6 +20,7 @@ class SoundcloudController {
     if (_clientId != null) return _clientId!;
 
     var response = await _http.get(Uri.https('soundcloud.com', ''));
+    response.ensureSuccessStatusCode();
     final scripts = RegExp('<script.*?src="(.*?)"').allMatches(response.body);
 
     if (scripts.isEmpty) throw ClientUnauthorizedException.clientId();
@@ -27,6 +29,7 @@ class SoundcloudController {
     if (scriptUrl == null) throw ClientUnauthorizedException.clientId();
 
     response = await _http.get(Uri.parse(scriptUrl));
+    response.ensureSuccessStatusCode();
     _clientId = response.body
       .split(',client_id')[1]
       .split('"')[1];
@@ -55,6 +58,7 @@ class SoundcloudController {
     );
 
     final response = await _http.get(uri);
+    response.ensureSuccessStatusCode();
     return response.body;
   }
 }

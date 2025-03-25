@@ -4,6 +4,8 @@ import '../bridge/soundcloud_controller.dart';
 import '../constants.dart';
 import '../playlists/playlist.dart';
 import '../tracks/track.dart';
+import '../utils/extensions.dart';
+import '../utils/utils.dart';
 import 'soundcloud_user.dart';
 import 'user.dart';
 import 'user_track_sort.dart';
@@ -20,6 +22,7 @@ class UserClient {
 
   /// Gets the [SoundcloudUser] with the specified [userId].
   Future<User> get(int userId) async {
+    throwIfNegative(userId, 'userId');
     final clientId = await _controller.getClientId();
     final uri = Uri.https(
       'api-v2.soundcloud.com',
@@ -28,6 +31,7 @@ class UserClient {
       }
     );
     final response = await _http.get(uri);
+    response.ensureSuccessStatusCode();
     final user = jsonDecode(response.body);
     return User.fromJson(user);
   }
@@ -46,21 +50,8 @@ class UserClient {
     int offset = defaultOffset,
     int limit = defaultLimit
   }) async* {
-    if (offset < 0) {
-      throw ArgumentError.value(
-        offset,
-        'offset',
-        'Offset cannot be less than zero.',
-      );
-    }
-
-    if (limit < 0) {
-      throw ArgumentError.value(
-        limit,
-        'limit',
-        'Limit cannot be less than zero.',
-      );
-    }
+    throwIfNegative(offset, 'offset');
+    throwIfNegative(limit, 'limit');
 
     final sort = switch (sortBy) {
       UserTrackSort.none => 'tracks',
@@ -80,6 +71,7 @@ class UserClient {
       );
 
       final response = await _http.get(uri);
+      response.ensureSuccessStatusCode();
       final json = jsonDecode(response.body);
       final collection = json['collection'] as List;
 
@@ -97,21 +89,8 @@ class UserClient {
     int offset = defaultOffset,
     int limit = defaultLimit
   }) async* {
-    if (offset < 0) {
-      throw ArgumentError.value(
-        offset,
-        'offset',
-        'Offset cannot be less than zero.',
-      );
-    }
-
-    if (limit < 0) {
-      throw ArgumentError.value(
-        limit,
-        'limit',
-        'Limit cannot be less than zero.',
-      );
-    }
+    throwIfNegative(offset, 'offset');
+    throwIfNegative(limit, 'limit');
 
     final clientId = await _controller.getClientId();
 
@@ -126,6 +105,7 @@ class UserClient {
       );
 
       final response = await _http.get(uri);
+      response.ensureSuccessStatusCode();
       final json = jsonDecode(response.body);
       final collection = json['collection'] as List;
       
@@ -143,21 +123,8 @@ class UserClient {
     int offset = defaultOffset,
     int limit = defaultLimit
   }) async* {
-    if (offset < 0) {
-      throw ArgumentError.value(
-        offset,
-        'offset',
-        'Offset cannot be less than zero.',
-      );
-    }
-
-    if (limit < 0) {
-      throw ArgumentError.value(
-        limit,
-        'limit',
-        'Limit cannot be less than zero.',
-      );
-    }
+    throwIfNegative(offset, 'offset');
+    throwIfNegative(limit, 'limit');
 
     final clientId = await _controller.getClientId();
 
@@ -172,6 +139,7 @@ class UserClient {
       );
 
       final response = await _http.get(uri);
+      response.ensureSuccessStatusCode();
       final json = jsonDecode(response.body);
       final collection = json['collection'] as List;
 
